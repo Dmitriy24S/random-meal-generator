@@ -99,7 +99,7 @@ function App() {
   const { randomImg, randomImgFetchStatus, randomImgRefetch } = useFetchRandomImg()
 
   return (
-    <div className='App mb-16'>
+    <div className='App mb-32'>
       <h1
         className='text-4xl font-bold tracking-wide uppercase bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 text-center cursor-pointer'
         onClick={() => location.reload()}
@@ -110,7 +110,7 @@ function App() {
         {status !== 'idle' && (
           <button
             onClick={() => refetch()}
-            className='rounded-md bg-indigo-500 text-white block ml-auto px-4 py-2 transition-colors hover:bg-indigo-600 xl:mr-16'
+            className='rounded-md bg-indigo-500 text-white block px-4 py-2 transition-colors hover:bg-indigo-600 xl:mr-16 mx-auto md:mx-0 md:ml-auto'
           >
             Get Random Meal
           </button>
@@ -123,14 +123,17 @@ function App() {
       {/* Idle */}
       {status === 'idle' && (
         <div className='flex flex-col justify-center items-center gap-4'>
-          <div className='random-image-container min-h-[300px] max-h-[300px] md:min-h-[500px] md:max-h-[500px] w-full'>
+          <div className='random-image-container min-h-[300px] max-h-[300px] md:min-h-[500px] md:max-h-[500px] w-full rounded-md overflow-hidden mb-4'>
             {randomImgFetchStatus === 'success' && (
               <img
                 src={randomImg}
                 alt='random food'
-                className='w-full rounded-md object-cover object-center cursor-pointer block min-h-[300px] max-h-[300px] md:min-h-[500px] md:max-h-[500px]'
+                className='w-full object-cover object-center cursor-pointer block md:min-h-[500px] md:max-h-[500px]'
                 onClick={() => randomImgRefetch()}
               />
+            )}
+            {randomImgFetchStatus === 'loading' && (
+              <div className='animate-pulse min-h-full max-h-[300px] md:min-h-[500px] md:max-h-[500px] bg-neutral-700'></div>
             )}
           </div>
           <h2 className='text-xl'>Want to see a random meal?</h2>
@@ -144,19 +147,21 @@ function App() {
       )}
       {status === 'success' && data && (
         // Meal
-        <div className='meal-container flex gap-4'>
-          <div className='media-container w-1/2'>
+        <div className='meal-container md:flex gap-4'>
+          <div className='media-container md:w-1/2'>
             <img
               src={data.strMealThumb}
               alt={data.strMeal}
-              className='object-cover max-h-[600px] h-[600px] rounded-md mb-4'
+              // className='object-cover max-h-[600px] h-[600px] rounded-md mb-4'
+              // className='object-cover rounded-md mb-4 min-h-[300px] max-h-[300px] md:min-h-[500px] md:max-h-[500px]'
+              className='object-cover rounded-md mb-4 min-h-[250px] max-h-[250px] w-full md:min-h-[600px] md:max-h-[600px]'
             />
             {/* https://www.youtube.com/watch?v=-mW1unsVhFU */}
             {/* <YouTube videoId='2g811Eo7K8U' /> */}
             <YouTube
               videoId={data.strYoutube.slice(-11)}
               opts={{
-                // height: '390',
+                // height: '300',
                 width: '100%',
                 // playerVars: {
                 //     autoplay: 1
@@ -173,8 +178,10 @@ function App() {
             )}
           </div>
           {/* Details */}
-          <div className='details-container p-4 pt-0 w-1/2'>
-            <h2 className='text-2xl mb-6 font-bold text-violet-400'>{data.strMeal}</h2>
+          <div className='details-container max-w-lg p-4 md:pt-0 md:w-1/2'>
+            <h2 className='text-2xl mb-6 font-bold text-violet-400 max-w-md'>
+              {data.strMeal}
+            </h2>
             <div className='mb-6'>
               <p className='mb-1'>
                 <span className='font-semibold text-violet-400'>Category: </span>
@@ -193,7 +200,7 @@ function App() {
               )}
             </div>
             <h4 className='text-2xl font-bold mb-4 text-violet-400'>Ingredients</h4>
-            <div className='ingredients gap-6 border border-violet-400 p-4 rounded-md max-w-lg min-w-[280px] mb-6'>
+            <div className='ingredients gap-6 border border-violet-400 p-4 rounded-md max-w-lg md:min-w-[280px] mb-6'>
               <ul className='w-full'>
                 {ingredients?.map((name, index) => (
                   <li key={`${name}${index}`} className='mb-1 flex'>
