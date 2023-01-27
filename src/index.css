@@ -50,6 +50,7 @@ body {
   /* display: flex; */
   /* place-items: center; */
   /* text-align: center; */
+  width: 100%;
 }
 
 #root {
@@ -57,3 +58,8 @@ body {
   margin: 0 auto;
   padding: 2rem;
 }
+
+/* .bookmarks-list-container {
+  overscroll-behavior-y: contain;
+  overflow-y: auto;
+} */

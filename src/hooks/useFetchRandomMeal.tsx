@@ -82,7 +82,11 @@ export const useFetchRandomMeal = () => {
 
   // const status: "idle" | "error" | "loading" | "success"
   // const { data, status, refetch, isFetching } = useQuery({
-  const { data, status, refetch } = useQuery({
+  const {
+    data: mealData,
+    status,
+    refetch,
+  } = useQuery({
     queryKey: ['meal'],
     queryFn: fetchRandomMeal,
     refetchOnWindowFocus: false,
@@ -91,5 +95,5 @@ export const useFetchRandomMeal = () => {
     enabled: false,
   })
 
-  return { data, status, refetch }
+  return { mealData, status, refetch }
 }
