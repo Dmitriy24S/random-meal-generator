@@ -1,4 +1,4 @@
-import { IMeal } from '../types/types'
+import { IMeal } from '../../types/types'
 
 interface IProps {
   data: IMeal

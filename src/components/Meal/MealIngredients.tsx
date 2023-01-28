@@ -1,4 +1,4 @@
-import { IMeal } from '../types/types'
+import { IMeal } from '../../types/types'
 
 interface IProps {
   data: IMeal
@@ -25,13 +25,15 @@ const MealIngredients = ({ data }: IProps) => {
   if (data) {
     ingredients = Object.entries(data)
       .filter(([key, value]) => key.startsWith('strIngredient'))
-      .map(([key, value]) => value)
+      .map(([key, value]) => value as string)
       .filter((value) => value !== '' && value !== null)
     measurements = Object.entries(data)
       .filter(([key, value]) => key.startsWith('strMeasure'))
-      .map(([key, value]) => value)
+      .map(([key, value]) => value as string)
     // .filter((value) => value !== '')
   }
+  // ! Type 'unknown[]' is not assignable to type 'string[]'.
+
   return (
     <>
       <h4 className='text-2xl font-bold mb-4 text-violet-400'>Ingredients</h4>

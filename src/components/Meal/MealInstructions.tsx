@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { FaChevronDown } from 'react-icons/fa'
-import { IMeal } from '../types/types'
+import { IMeal } from '../../types/types'
 
 interface IProps {
   data: IMeal
