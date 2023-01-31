@@ -52,3 +52,9 @@ export interface IMeal {
   strMeasure19?: string
   strMeasure20?: string
 }
+
+export interface IUserData {
+  name: string
+  email: string
+  _id: string
+}

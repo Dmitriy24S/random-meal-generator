@@ -2,6 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Form Input */
+@layer components {
+  .input-container {
+    @apply mb-8 relative;
+  }
+  .input {
+    @apply text-white rounded w-full text-base mb-2 px-4 py-2.5 bg-[#251c68];
+  }
+  .btn {
+    @apply rounded-md bg-indigo-500 text-white transition-colors py-2 px-4 mx-auto block hover:bg-indigo-600 focus-visible:bg-indigo-600;
+  }
+}
+
+/* Registration Form */
+input::placeholder {
+  font-size: inherit;
+  color: rgba(255, 255, 255, 0.364);
+}
+p[role='alert'] {
+  color: rgb(252, 68, 68);
+  letter-spacing: 1px;
+  padding-left: 0.2rem;
+}
+
+/* Scrollbar */
+
 html {
   scrollbar-color: hsl(0, 0%, 67%) transparent;
   /* color-scheme: dark; */
@@ -19,6 +45,13 @@ html {
   border: transparent;
 }
 
+/* .bookmarks-list-container {
+  overscroll-behavior-y: contain;
+  overflow-y: auto;
+} */
+
+/* Other */
+
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   /* font-family: Raleway, HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif; */
@@ -28,6 +61,22 @@ html {
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
   scrollbar-gutter: stable;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  /* display: flex; */
+  /* place-items: center; */
+  /* text-align: center; */
+  width: 100%;
 }
 
 a {
@@ -59,24 +108,3 @@ button:focus-visible {
   /* outline: 4px auto -webkit-focus-ring-color; */
   outline-offset: 4px;
 }
-
-body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-  /* display: flex; */
-  /* place-items: center; */
-  /* text-align: center; */
-  width: 100%;
-}
-
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
-/* .bookmarks-list-container {
-  overscroll-behavior-y: contain;
-  overflow-y: auto;
-} */
