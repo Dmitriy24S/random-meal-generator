@@ -1,26 +1,58 @@
+import axios from 'axios'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
+import { IUserData } from '../../types/types'
+import { API_URL } from '../api/api'
 
 interface IProps {
   closeLoginForm: () => void
+  closeModal: () => void
+  updateUserData: (data: IUserData | undefined) => void
 }
 
 interface IFormInput {
   email: string
   password: string
 }
-const UserLoginForm = ({ closeLoginForm }: IProps) => {
+const UserLoginForm = ({ closeLoginForm, closeModal, updateUserData }: IProps) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<IFormInput>()
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log('handle submit, data:', data)
-    // email: 'sdffssdsd@fdsfds.co'
-    // name: 'fsdfsdfsdfs'
-    // password: 'fdsfdfs'
+  const onSubmit: SubmitHandler<IFormInput> = async (formValues) => {
+    console.log('handle submit, formValues:', formValues)
+    // email: "1111@111.co"
+    // password: "1111"
+
+    try {
+      const { data } = await axios.post(`${API_URL}/meal/auth/login`, formValues)
+      console.log('data', data)
+      // data:
+      // {success: true, userData: {…}, token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M…ExNn0.l7SnUykIbby4zp0Ua7SMxdXY4tPpWsjbqJpb8mZ3jRo'}
+      // success:true
+      // token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Q4ZDM2ZWZjNzcwNGI1YmZmYzk2NzQiLCJpYXQiOjE2NzUyMTExMTYsImV4cCI6MTY3NzgwMzExNn0.l7SnUykIbby4zp0Ua7SMxdXY4tPpWsjbqJpb8mZ3jRo"
+      // userData:{_id: '63d8d36efc7704b5bffc9674', name: '77777', email: '777@777.co', __v: 0}
+
+      if ('token' in data) {
+        window.localStorage.setItem('token', data.token)
+        // const { __v, ...userData } = data.data
+        const userData: IUserData = {
+          name: data.name,
+          email: data.email,
+        }
+        updateUserData(userData)
+        console.log('submit login userData:', userData)
+        closeModal()
+      }
+      if (!data) {
+        alert('Failed to login, no data?')
+      }
+    } catch (error) {
+      console.log('login error', error)
+      alert('Login submit error catch?')
+    }
   }
 
   return (

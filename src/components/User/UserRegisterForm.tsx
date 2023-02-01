@@ -2,11 +2,12 @@ import axios from 'axios'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { IUserData } from '../../types/types'
+import { API_URL } from '../api/api'
 
 interface IProps {
   closeRegisterForm: () => void
   closeModal: () => void
-  updateUserData: (data: IUserData) => void
+  updateUserData: (data: IUserData | undefined) => void
 }
 
 interface IFormInput {
@@ -19,13 +20,7 @@ interface IFormInput {
 // process.env.REACT_APP_API_URL || 'http://localhost:4444'
 // }/meal/auth/register`
 
-const API_URL = `${
-  import.meta.env.VITE_API_URL || 'http://localhost:4444'
-}/meal/auth/register`
-
 const UserRegisterForm = ({ closeRegisterForm, closeModal, updateUserData }: IProps) => {
-  console.log({ API_URL })
-
   const {
     register,
     handleSubmit,
@@ -43,7 +38,7 @@ const UserRegisterForm = ({ closeRegisterForm, closeModal, updateUserData }: IPr
     // password: 'fdsfdfs'
 
     try {
-      const data = await axios.post(API_URL, formValues)
+      const data = await axios.post(`${API_URL}/meal/auth/register`, formValues)
       // return data
       if (data.statusText === 'OK') {
         // closeRegisterForm()
@@ -52,8 +47,14 @@ const UserRegisterForm = ({ closeRegisterForm, closeModal, updateUserData }: IPr
 
       if ('token' in data.data) {
         window.localStorage.setItem('token', data.data.token)
-        const { __v, ...userData } = data.data
+        // const { __v, ...userData } = data.data
+        const userData: IUserData = {
+          name: data.data.name,
+          email: data.data.email,
+        }
         updateUserData(userData)
+        console.log('submit register userData:', userData)
+
         closeModal()
       }
 

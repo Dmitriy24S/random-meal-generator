@@ -56,5 +56,13 @@ export interface IMeal {
 export interface IUserData {
   name: string
   email: string
+  // _id: string
+}
+
+export interface IAuthUserData extends IUserData {
+  success: boolean
   _id: string
+  // name: string;
+  // email: string;
+  __v: number
 }

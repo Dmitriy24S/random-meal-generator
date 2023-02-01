@@ -10,7 +10,7 @@ import UserRegisterForm from './User/UserRegisterForm'
 interface IProps {
   status: 'idle' | 'error' | 'loading' | 'success'
   refetch: () => void
-  updateUserData: (data: IUserData) => void
+  updateUserData: (data: IUserData | undefined) => void
   userData: IUserData | undefined
 }
 
@@ -75,7 +75,11 @@ const Header = ({ status, refetch, updateUserData, userData }: IProps) => {
                 />
               )}
               {isShowingLoginForm && !userData && (
-                <UserLoginForm closeLoginForm={closeLoginForm} />
+                <UserLoginForm
+                  closeLoginForm={closeLoginForm}
+                  closeModal={closeModal}
+                  updateUserData={updateUserData}
+                />
               )}
               {/* User is signed in -> have user data */}
               {userData && <UserInfo userData={userData} />}
