@@ -82,7 +82,13 @@ const Header = ({ status, refetch, updateUserData, userData }: IProps) => {
                 />
               )}
               {/* User is signed in -> have user data */}
-              {userData && <UserInfo userData={userData} />}
+              {userData && (
+                <UserInfo
+                  userData={userData}
+                  updateUserData={updateUserData}
+                  closeModal={closeModal}
+                />
+              )}
             </Modal>
           )}
         </div>
