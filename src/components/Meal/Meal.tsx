@@ -184,13 +184,11 @@ const Meal = ({ mealData, userData }: IProps) => {
       <div className='meal-container md:flex gap-4'>
         <MealMedia data={data} />
         {/* Meal Info */}
-        {/* <div className='p-4 md:pt-0 max-w-lg md:w-1/2 relative'> */}
         <div className='meal-info p-4 md:pt-0 md:w-1/2 relative'>
           <div className='details--top flex items-start mb-6'>
             <h2 className='text-2xl font-bold text-violet-400 max-w-md'>
               {data.strMeal}
             </h2>
-            {/* // TODO: add hover tooltip */}
             <MealActions
               data={data}
               isBookmarked={isBookmarked}

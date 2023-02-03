@@ -18,8 +18,7 @@ const MealActions = ({
   toggleBookmarksMenu,
 }: IProps) => {
   return (
-    <div className='actions mt-2 flex ml-auto'>
-      {/* // TODO: add hover tooltip */}
+    <div className='actions mt-2 flex ml-auto z-10'>
       <BookmarkButton
         data={data}
         isBookmarked={isBookmarked}
@@ -27,7 +26,6 @@ const MealActions = ({
         removeFromBookmarks={removeFromBookmarks}
         // ! JSX props should not use arrow functionssonarlint(typescript:S6480) ?
       />
-      {/* // TODO: add hover tooltip */}
       <BookmarksMenuButton toggleBookmarksMenu={toggleBookmarksMenu} />
     </div>
   )
