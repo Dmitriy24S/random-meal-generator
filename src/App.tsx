@@ -75,7 +75,9 @@ function App() {
         {status === 'error' && <h3>Error while fetching data</h3>}
       </div>
       {/* Success */}
-      {status === 'success' && mealData && <Meal mealData={mealData} />}
+      {status === 'success' && mealData && (
+        <Meal mealData={mealData} userData={userData} />
+      )}
     </div>
   )
 }
