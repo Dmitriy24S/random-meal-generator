@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { API_URL } from './components/api/api'
+import { API_URL } from './api/api'
 import Header from './components/Header'
 import IntroScreen from './components/IntroScreen'
 import Meal from './components/Meal/Meal'

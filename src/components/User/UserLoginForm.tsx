@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
+import { API_URL } from '../../api/api'
 import { IUserData } from '../../types/types'
-import { API_URL } from '../api/api'
 
 interface IProps {
   closeLoginForm: () => void
