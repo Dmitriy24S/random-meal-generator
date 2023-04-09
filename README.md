@@ -13,3 +13,9 @@ After the installation of the dependencies run:
 ```
 npm run dev
 ```
+
+## Repositories
+
+Frontend: https://github.com/Dmitriy24S/random-meal-generator
+
+Backend: https://github.com/Dmitriy24S/random-meal-generator-backend
